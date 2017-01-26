@@ -32,6 +32,13 @@ describe Game do
       game.mark(0,0)
     end
 
+    it "instructs the board to mark a cell with the next players mark after a switch" do
+      allow(board).to receive(:mark).with(0,0,:X)
+      game.mark(0,0)
+      expect(board).to receive(:mark).with(0,1,:O)
+      game.mark(0,1)
+    end
+
     it "switches the turn" do
       game.mark(0,0)
       expect(game.turn).to equal(playerO)

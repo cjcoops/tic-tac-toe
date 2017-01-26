@@ -14,7 +14,7 @@ class Game
     @playerX = playerX
     @playerO = playerO
     @board = board
-    @turn ||= playerX
+    @turn = playerX
   end
 
   def mark(row, column)
