@@ -17,6 +17,7 @@ class Board
     return true if whole_column?
     return true if whole_row?
     return true if right_diagonal?
+    return true if left_diagonal?
     false
   end
 
@@ -38,6 +39,11 @@ class Board
 
   def right_diagonal?
     fields = [grid[0][0], grid[1][1], grid[2][2]]
+    fields_same_and_not_nil?(fields)
+  end
+
+  def left_diagonal?
+    fields = [grid[0][2], grid[1][1], grid[2][0]]
     fields_same_and_not_nil?(fields)
   end
 
