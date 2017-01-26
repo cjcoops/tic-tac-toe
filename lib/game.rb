@@ -1,3 +1,5 @@
+# responsible for controlling the flow of the game
+
 require_relative "player"
 require_relative "board"
 
