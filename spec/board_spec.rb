@@ -33,12 +33,32 @@ describe Board do
     end
 
     it "returns true when a player has the whole left column" do
-      board = Board.new(grid: [ [:X,nil,nil], [:X,nil,nil], [:X,nil,nil] ])
+      board = Board.new(grid: Array.new(3) {[:X,nil,nil]})
       expect(board.isComplete?).to equal(true)
     end
 
     it "returns true when a player has the whole middle column" do
-      board = Board.new(grid: [ [nil,:O,nil], [nil,:O,nil], [nil,:O,nil] ])
+      board = Board.new(grid: Array.new(3) { [nil,:O,nil]})
+      expect(board.isComplete?).to equal(true)
+    end
+
+    it "returns true when a player has the whole right column" do
+      board = Board.new(grid: Array.new(3) {[nil,nil,:O] })
+      expect(board.isComplete?).to equal(true)
+    end
+
+    it "returns true when a player has the whole top row" do
+      board = Board.new(grid: [ [:O,:O,:O], [nil,nil,nil], [nil,nil,nil] ])
+      expect(board.isComplete?).to equal(true)
+    end
+
+    it "returns true when a player has the whole bottom row" do
+      board = Board.new(grid: [ [nil,nil,nil], [nil,nil,nil],[:O,:O,:O] ])
+      expect(board.isComplete?).to equal(true)
+    end
+
+    it "returns true when a player has the whole middle row" do
+      board = Board.new(grid: [ [nil,nil,nil], [:O,:O,:O],[nil,nil,nil] ])
       expect(board.isComplete?).to equal(true)
     end
   end
