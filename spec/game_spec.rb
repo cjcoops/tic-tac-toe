@@ -20,27 +20,22 @@ describe Game do
     expect(game.turn).to equal(playerX)
   end
 
-  it "playerO goes next" do
-    game.mark(0,0)
-    expect(game.turn).to equal(playerO)
-  end
-
-  describe "#mark" do
+  describe "#claim" do
 
     it "instructs the board to mark a cell with the current players mark" do
       expect(board).to receive(:mark).with(0,0,:X)
-      game.mark(0,0)
+      game.claim(0,0)
     end
 
     it "instructs the board to mark a cell with the next players mark after a switch" do
       allow(board).to receive(:mark).with(0,0,:X)
-      game.mark(0,0)
+      game.claim(0,0)
       expect(board).to receive(:mark).with(0,1,:O)
-      game.mark(0,1)
+      game.claim(0,1)
     end
 
     it "switches the turn" do
-      game.mark(0,0)
+      game.claim(0,0)
       expect(game.turn).to equal(playerO)
     end
 

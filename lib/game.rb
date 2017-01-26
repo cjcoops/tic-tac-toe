@@ -14,7 +14,7 @@ class Game
     @board = board || Board.new
   end
 
-  def mark(row, column)
+  def claim(row, column)
     board.mark(row, column, current_player_mark)
     switch_turns
   end
