@@ -8,18 +8,19 @@ class Game
   attr_reader :playerX, :playerO, :board
   attr_accessor :turn
 
-  def initialize(playerX: Player.new(mark: :X),
-                  playerO: Player.new(mark: :O),
-                   board: Board.new)
-    @playerX = playerX
-    @playerO = playerO
-    @board = board
-    @turn = playerX
+  def initialize(playerX: nil, playerO: nil, board: nil)
+    @playerX = playerX || Player.new(mark: :X)
+    @playerO = playerO || Player.new(mark: :O)
+    @board = board || Board.new
   end
 
   def mark(row, column)
     board.mark(row, column, current_player_mark)
     switch_turns
+  end
+
+  def turn
+    @turn ||= playerX
   end
 
   private
