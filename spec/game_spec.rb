@@ -2,9 +2,9 @@ require 'game'
 
 describe Game do
 
-  let(:board) {double :board}
-  let(:playerO) {double :player}
-  let(:playerX) {double :player}
+  let(:board) {double :board, mark: nil}
+  let(:playerO) {double :player, mark: :O}
+  let(:playerX) {double :player, mark: :X}
   subject(:game) {described_class.new(playerX: playerX, playerO: playerO, board: board)}
 
   it "has 2 players" do
@@ -21,14 +21,19 @@ describe Game do
   end
 
   it "playerO goes next" do
-    game.mark
+    game.mark(0,0)
     expect(game.turn).to equal(playerO)
   end
 
   describe "#mark" do
 
+    it "instructs the board to mark a cell with the current players mark" do
+      expect(board).to receive(:mark).with(0,0,:X)
+      game.mark(0,0)
+    end
+
     it "switches the turn" do
-      game.mark
+      game.mark(0,0)
       expect(game.turn).to equal(playerO)
     end
 

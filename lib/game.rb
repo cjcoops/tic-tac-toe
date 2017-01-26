@@ -17,7 +17,8 @@ class Game
     @turn ||= playerX
   end
 
-  def mark
+  def mark(row, column)
+    board.mark(row, column, current_player_mark)
     switch_turns
   end
 
@@ -25,6 +26,10 @@ class Game
 
   def switch_turns
     turn == playerX ? self.turn = playerO : self.turn = playerX
+  end
+
+  def current_player_mark
+    turn.mark
   end
 
 end
