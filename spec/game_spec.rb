@@ -9,6 +9,10 @@ describe Game do
     expect(game).to respond_to(:playerO)
   end
 
+  it "has a board" do
+    expect(game).to respond_to(:board)
+  end
+
   it "playerX goes first" do
     expect(game.turn).to equal(game.playerX)
   end

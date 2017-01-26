@@ -1,13 +1,17 @@
 require_relative "player"
+require_relative "board"
 
 class Game
 
-  attr_reader :playerX, :playerO
+  attr_reader :playerX, :playerO, :board
   attr_accessor :turn
 
-  def initialize(player: Player)
-    @playerX = Player.new(mark: :X)
-    @playerO = Player.new(mark: :O)
+  def initialize(playerX: Player.new(mark: :X),
+                  playerO: Player.new(mark: :O),
+                   board: Board.new)
+    @playerX = playerX
+    @playerO = playerO
+    @board = board
     @turn ||= playerX
   end
 
@@ -18,7 +22,7 @@ class Game
   private
 
   def switch_turns
-    turn == playerX ? self.turn = playerO : self.turn = player1
+    turn == playerX ? self.turn = playerO : self.turn = playerX
   end
 
 end
