@@ -23,6 +23,10 @@ class Game
     @turn ||= playerX
   end
 
+  def isOver?
+    board.isComplete?
+  end
+
   private
 
   def switch_turns
