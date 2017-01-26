@@ -8,4 +8,8 @@ class Board
     @grid = Array.new(3,Array.new(3))
   end
 
+  def mark(row, column, type)
+    grid[row][column] = type
+  end
+
 end
