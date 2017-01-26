@@ -24,6 +24,8 @@ describe Board do
       expect(board.grid[0][0]).to equal(:X)
     end
 
+
+
   end
 
   describe "#isComplete?" do
@@ -71,6 +73,17 @@ describe Board do
       board = Board.new(grid: [ [nil,nil,:O], [nil,:O,nil],[:O,nil,nil] ])
       expect(board.isComplete?).to equal(true)
     end
+
+    it "returns true no 3 matching fields" do
+      board = Board.new(grid: [ [:X,nil,:O], [nil,:O,:X],[:X,nil,:O] ])
+      expect(board.isComplete?).to equal(false)
+      board = Board.new(grid: [ [:X,:X,:O], [:O,:O,:X],[:X,nil,:O] ])
+      expect(board.isComplete?).to equal(false)
+      board = Board.new(grid: [ [:X,:O,:X], [nil,:X,:X],[:O,nil,:O] ])
+      expect(board.isComplete?).to equal(false)
+    end
+
+
   end
 
 end

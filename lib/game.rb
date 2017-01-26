@@ -16,6 +16,7 @@ class Game
 
   def claim(row, column)
     board.mark(row, column, current_player_mark)
+    board.isWinner?
     switch_turns
   end
 

@@ -2,7 +2,7 @@ require 'game'
 
 describe Game do
 
-  let(:board) {double :board, mark: nil}
+  let(:board) {double :board, mark: nil, isWinner?: false}
   let(:playerO) {double :player, mark: :O}
   let(:playerX) {double :player, mark: :X}
   subject(:game) {described_class.new(playerX: playerX, playerO: playerO, board: board)}
@@ -37,6 +37,11 @@ describe Game do
     it "switches the turn" do
       game.claim(0,0)
       expect(game.turn).to equal(playerO)
+    end
+
+    it "asks the board whether there is a winner" do
+      expect(board).to receive(:isWinner?)
+      game.claim(0,1)
     end
 
   end
