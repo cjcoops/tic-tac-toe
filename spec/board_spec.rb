@@ -26,4 +26,21 @@ describe Board do
 
   end
 
+  describe "#isComplete?" do
+
+    it "returns false at the start" do
+      expect(board.isComplete?).to equal(false)
+    end
+
+    it "returns true when a player has the whole left column" do
+      board = Board.new(grid: [ [:X,nil,nil], [:X,nil,nil], [:X,nil,nil] ])
+      expect(board.isComplete?).to equal(true)
+    end
+
+    it "returns true when a player has the whole middle column" do
+      board = Board.new(grid: [ [nil,:O,nil], [nil,:O,nil], [nil,:O,nil] ])
+      expect(board.isComplete?).to equal(true)
+    end
+  end
+
 end
