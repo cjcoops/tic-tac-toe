@@ -48,15 +48,21 @@ describe Game do
 
   describe "#isOver?" do
 
-    it "knows when the game is not over" do
-      allow(board).to receive(:isComplete?).and_return(false)
-      expect(game.isOver?).to equal(false)
-    end
+    # it "knows when the game is not over" do
+    #   allow(board).to receive(:isWinner?).and_return(true)
+    #   expect(game.isOver?).to equal(false)
+    # end
 
-    it "knows when the game is over" do
-      allow(board).to receive(:isComplete?).and_return(true)
-      expect(game.isOver?).to equal(true)
-    end
+
+    # it "knows when the game is not over" do
+    #   allow(board).to receive(:isComplete?).and_return(false)
+    #   expect(game.isOver?).to equal(false)
+    # end
+    #
+    # it "knows when the game is over" do
+    #   allow(board).to receive(:isComplete?).and_return(true)
+    #   expect(game.isOver?).to equal(true)
+    # end
 
   end
 

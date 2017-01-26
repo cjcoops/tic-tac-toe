@@ -13,12 +13,16 @@ class Board
     grid[row][column] = type
   end
 
-  def isComplete?
+  def isWinner?
     return true if whole_column?
     return true if whole_row?
     return true if right_diagonal?
     return true if left_diagonal?
     false
+  end
+
+  def isOver?
+    grid.flatten.all? { |field| !!field }
   end
 
   private

@@ -16,16 +16,19 @@ class Game
 
   def claim(row, column)
     board.mark(row, column, current_player_mark)
-    board.isWinner?
-    switch_turns
+    check_if_winner
   end
 
   def turn
     @turn ||= playerX
   end
 
-  def isOver?
-    board.isComplete?
+  def check_if_winner
+    if board.isWinner?
+      puts "#{turn} wins"
+    else
+      switch_turns
+    end
   end
 
   private

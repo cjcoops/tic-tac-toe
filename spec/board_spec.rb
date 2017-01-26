@@ -28,59 +28,72 @@ describe Board do
 
   end
 
-  describe "#isComplete?" do
+  describe "#isWinner?" do
 
     it "returns false at the start" do
-      expect(board.isComplete?).to equal(false)
+      expect(board.isWinner?).to equal(false)
     end
 
     it "returns true when a player has the whole left column" do
       board = Board.new(grid: Array.new(3) {[:X,nil,nil]})
-      expect(board.isComplete?).to equal(true)
+      expect(board.isWinner?).to equal(true)
     end
 
     it "returns true when a player has the whole middle column" do
       board = Board.new(grid: Array.new(3) { [nil,:O,nil]})
-      expect(board.isComplete?).to equal(true)
+      expect(board.isWinner?).to equal(true)
     end
 
     it "returns true when a player has the whole right column" do
       board = Board.new(grid: Array.new(3) {[nil,nil,:O] })
-      expect(board.isComplete?).to equal(true)
+      expect(board.isWinner?).to equal(true)
     end
 
     it "returns true when a player has the whole top row" do
       board = Board.new(grid: [ [:O,:O,:O], [nil,nil,nil], [nil,nil,nil] ])
-      expect(board.isComplete?).to equal(true)
+      expect(board.isWinner?).to equal(true)
     end
 
     it "returns true when a player has the whole bottom row" do
       board = Board.new(grid: [ [nil,nil,nil], [nil,nil,nil],[:O,:O,:O] ])
-      expect(board.isComplete?).to equal(true)
+      expect(board.isWinner?).to equal(true)
     end
 
     it "returns true when a player has the whole middle row" do
       board = Board.new(grid: [ [nil,nil,nil], [:O,:O,:O],[nil,nil,nil] ])
-      expect(board.isComplete?).to equal(true)
+      expect(board.isWinner?).to equal(true)
     end
 
     it "returns true when a player has the \\ diagonal" do
       board = Board.new(grid: [ [:X,nil,nil], [nil,:X,nil],[nil,nil,:X] ])
-      expect(board.isComplete?).to equal(true)
+      expect(board.isWinner?).to equal(true)
     end
 
     it "returns true when a player has the \/ diagonal" do
       board = Board.new(grid: [ [nil,nil,:O], [nil,:O,nil],[:O,nil,nil] ])
-      expect(board.isComplete?).to equal(true)
+      expect(board.isWinner?).to equal(true)
     end
 
     it "returns true no 3 matching fields" do
       board = Board.new(grid: [ [:X,nil,:O], [nil,:O,:X],[:X,nil,:O] ])
-      expect(board.isComplete?).to equal(false)
+      expect(board.isWinner?).to equal(false)
       board = Board.new(grid: [ [:X,:X,:O], [:O,:O,:X],[:X,nil,:O] ])
-      expect(board.isComplete?).to equal(false)
+      expect(board.isWinner?).to equal(false)
       board = Board.new(grid: [ [:X,:O,:X], [nil,:X,:X],[:O,nil,:O] ])
-      expect(board.isComplete?).to equal(false)
+      expect(board.isWinner?).to equal(false)
+    end
+
+  end
+
+  describe "#isOver?" do
+
+    it "return false if the game is still in play" do
+      expect(board.isOver?).to equal(false)
+    end
+
+    it "returns true if the game is a draw" do
+      board = Board.new(grid: [ [:X,:X,:O], [:X,:O,:X],[:O,:O,:X] ])
+      expect(board.isOver?).to equal(true)
     end
 
 
