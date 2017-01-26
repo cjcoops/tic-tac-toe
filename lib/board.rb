@@ -21,10 +21,10 @@ class Board
   private
 
   def whole_column?
-    # grid.each do |row|
-    #   row[0]
-    # # end
-    [grid[0][0], grid[1][0], grid[2][0]].compact.length == 3 && [grid[0][0], grid[1][0], grid[2][0]].uniq.length == 1
+    (0...grid.length).any? do |column|
+      fields = [grid[0][column], grid[1][column], grid[2][column]]
+      fields.compact.length == 3 && fields.uniq.length == 1
+    end
   end
 
 end
