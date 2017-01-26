@@ -61,6 +61,11 @@ describe Board do
       board = Board.new(grid: [ [nil,nil,nil], [:O,:O,:O],[nil,nil,nil] ])
       expect(board.isComplete?).to equal(true)
     end
+
+    it "returns true when a player has the \\ diagonal" do
+      board = Board.new(grid: [ [:X,nil,nil], [nil,:X,nil],[nil,nil,:X] ])
+      expect(board.isComplete?).to equal(true)
+    end
   end
 
 end
