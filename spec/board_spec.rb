@@ -13,8 +13,14 @@ describe Board do
 
   describe "#mark" do
 
-    it "marks a cell on the grid" do
+    it "marks a field on the grid" do
       board.mark(0, 0, :X)
+      expect(board.grid[0][0]).to equal(:X)
+    end
+
+    it "returns if field is already taken" do
+      board.mark(0, 0, :X)
+      board.mark(0, 0, :O)
       expect(board.grid[0][0]).to equal(:X)
     end
 

@@ -9,6 +9,7 @@ class Board
   end
 
   def mark(row, column, type)
+    return if grid[row][column]
     grid[row][column] = type
   end
 
