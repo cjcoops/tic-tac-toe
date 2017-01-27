@@ -16,25 +16,25 @@ class Game
 
   def claim(row, column)
     raise "The game is already over" if game_over?
-    return check_if_over if board.mark(row, column, current_player_mark)
+    return check_if_over_or_switch_turns if board.mark(row, column, current_player_mark)
     raise "Try again, Player #{turn.mark}'s turn"
+  end
+
+  def check_if_over_or_switch_turns
+    return "Player #{turn.mark} wins" if board.isWinner?
+    return "It's a draw" if board.isDraw?
+    switch_turns
   end
 
   def turn
     @turn ||= playerX
   end
 
-  def check_if_over
-    return "Player #{turn.mark} wins" if board.isWinner?
-    return "It's a draw" if board.isDraw?
-    switch_turns
-    return "Player #{turn.mark}'s turn"
-  end
-
   private
 
   def switch_turns
     turn == playerX ? self.turn = playerO : self.turn = playerX
+    return "Player #{turn.mark}'s turn"
   end
 
   def current_player_mark

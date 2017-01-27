@@ -6,5 +6,4 @@ class Player
     @mark = mark
   end
 
-
 end

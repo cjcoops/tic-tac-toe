@@ -74,16 +74,16 @@ describe Game do
 
   end
 
-  describe "#check_if_over" do
+  describe "#check_if_over_or_switch_turns" do
 
     it "confirms that the current player is the winner if claim wins the game" do
       allow(board).to receive(:isWinner?) {true}
-      expect(game.check_if_over).to eq("Player X wins")
+      expect(game.check_if_over_or_switch_turns).to eq("Player X wins")
     end
 
     it "confirms that the game is a draw claim draws the game" do
       allow(board).to receive(:isDraw?) {true}
-      expect(game.check_if_over).to eq("It's a draw")
+      expect(game.check_if_over_or_switch_turns).to eq("It's a draw")
     end
 
   end

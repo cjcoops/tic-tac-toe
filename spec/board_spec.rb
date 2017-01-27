@@ -72,7 +72,7 @@ describe Board do
       expect(board.isWinner?).to equal(true)
     end
 
-    it "returns true no 3 matching fields" do
+    it "returns true if no 3 matching fields" do
       board = Board.new(grid: [ [:X,nil,:O], [nil,:O,:X],[:X,nil,:O] ])
       expect(board.isWinner?).to equal(false)
       board = Board.new(grid: [ [:X,:X,:O], [:O,:O,:X],[:X,nil,:O] ])
@@ -93,7 +93,6 @@ describe Board do
       board = Board.new(grid: [ [:X,:X,:O], [:X,:O,:X],[:O,:O,:X] ])
       expect(board.isDraw?).to equal(true)
     end
-
 
   end
 
