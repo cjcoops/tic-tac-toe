@@ -18,13 +18,11 @@ describe Board do
       expect(board.grid[0][0]).to equal(:X)
     end
 
-    it "returns if field is already taken" do
+    it "returns false if field is already taken" do
       board.mark(0, 0, :X)
-      board.mark(0, 0, :O)
+      expect(board.mark(0, 0, :O)).to equal(false)
       expect(board.grid[0][0]).to equal(:X)
     end
-
-
 
   end
 

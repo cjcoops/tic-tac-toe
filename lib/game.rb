@@ -28,7 +28,7 @@ class Game
     return "Player #{turn.mark} wins" if board.isWinner?
     return "It's a draw" if board.isDraw?
     switch_turns
-    puts "Player #{turn.mark}'s turn"
+    return "Player #{turn.mark}'s turn"
   end
 
   private

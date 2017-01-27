@@ -38,6 +38,10 @@ describe Game do
       expect(game.turn).to equal(playerO)
     end
 
+    it "confirms the next player's turn" do
+      expect(game.claim(0,0)).to eq("Player O's turn")
+    end
+
     it "asks the board whether there is a winner" do
       expect(board).to receive(:isWinner?)
       game.claim(0,1)
@@ -48,14 +52,11 @@ describe Game do
       game.claim(0,1)
     end
 
-    context "player tries to claim field which is already taken" do
-
-      it "raises an error" do
-        allow(board).to receive(:mark).and_return(false)
-        expect{game.claim(0,0)}.to raise_error("Try again, Player X's turn")
-      end
-
+    it "raises an error when player tries to claim field which is already taken" do
+      allow(board).to receive(:mark).and_return(false)
+      expect{game.claim(0,0)}.to raise_error("Try again, Player X's turn")
     end
+
 
     context "game is over" do
 
@@ -73,6 +74,18 @@ describe Game do
 
   end
 
+  describe "#check_if_over" do
 
+    it "confirms that the current player is the winner if claim wins the game" do
+      allow(board).to receive(:isWinner?) {true}
+      expect(game.check_if_over).to eq("Player X wins")
+    end
+
+    it "confirms that the game is a draw claim draws the game" do
+      allow(board).to receive(:isDraw?) {true}
+      expect(game.check_if_over).to eq("It's a draw")
+    end
+
+  end
 
 end
