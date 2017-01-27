@@ -48,7 +48,15 @@ class Board
   end
 
   def fields_same_and_not_nil?(fields)
-    fields.compact.length == 3 && fields.uniq.length == 1
+    fields_same?(fields) && fields_not_nil?(fields)
+  end
+
+  def fields_same?(fields)
+    fields.uniq.length == 1
+  end
+
+  def fields_not_nil?(fields)
+    fields.compact.length == 3
   end
 
 end
