@@ -14,11 +14,7 @@ class Board
   end
 
   def isWinner?
-    return true if whole_column?
-    return true if whole_row?
-    return true if right_diagonal?
-    return true if left_diagonal?
-    false
+    whole_column? || whole_row? || right_diagonal? || left_diagonal?
   end
 
   def isDraw?

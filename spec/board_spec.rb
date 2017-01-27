@@ -83,7 +83,7 @@ describe Board do
 
   end
 
-  describe "#isOver?" do
+  describe "#isDraw?" do
 
     it "return false if the game is still in play" do
       expect(board.isDraw?).to equal(false)
