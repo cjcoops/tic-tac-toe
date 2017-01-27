@@ -9,7 +9,7 @@ class Board
   end
 
   def mark(row, column, type)
-    return if grid[row][column]
+    return false if grid[row][column]
     grid[row][column] = type
   end
 
@@ -21,7 +21,7 @@ class Board
     false
   end
 
-  def isOver?
+  def isDraw?
     grid.flatten.all? { |field| !!field }
   end
 

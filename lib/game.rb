@@ -15,20 +15,20 @@ class Game
   end
 
   def claim(row, column)
-    board.mark(row, column, current_player_mark)
-    check_if_winner
+    raise "The game is already over" if game_over?
+    return check_if_over if board.mark(row, column, current_player_mark)
+    raise "Try again, Player #{turn.mark}'s turn"
   end
 
   def turn
     @turn ||= playerX
   end
 
-  def check_if_winner
-    if board.isWinner?
-      puts "#{turn} wins"
-    else
-      switch_turns
-    end
+  def check_if_over
+    return "Player #{turn.mark} wins" if board.isWinner?
+    return "It's a draw" if board.isDraw?
+    switch_turns
+    puts "Player #{turn.mark}'s turn"
   end
 
   private
@@ -39,6 +39,10 @@ class Game
 
   def current_player_mark
     turn.mark
+  end
+
+  def game_over?
+    board.isWinner? || board.isDraw?
   end
 
 end

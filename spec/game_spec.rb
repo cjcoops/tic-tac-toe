@@ -2,7 +2,7 @@ require 'game'
 
 describe Game do
 
-  let(:board) {double :board, mark: nil, isWinner?: false}
+  let(:board) {double :board, mark: true, isWinner?: false, isDraw?: false}
   let(:playerO) {double :player, mark: :O}
   let(:playerX) {double :player, mark: :X}
   subject(:game) {described_class.new(playerX: playerX, playerO: playerO, board: board)}
@@ -28,7 +28,6 @@ describe Game do
     end
 
     it "instructs the board to mark a cell with the next players mark after a switch" do
-      allow(board).to receive(:mark).with(0,0,:X)
       game.claim(0,0)
       expect(board).to receive(:mark).with(0,1,:O)
       game.claim(0,1)
@@ -44,27 +43,36 @@ describe Game do
       game.claim(0,1)
     end
 
+    it "asks the board whether there is a winner" do
+      expect(board).to receive(:isDraw?)
+      game.claim(0,1)
+    end
+
+    context "player tries to claim field which is already taken" do
+
+      it "raises an error" do
+        allow(board).to receive(:mark).and_return(false)
+        expect{game.claim(0,0)}.to raise_error("Try again, Player X's turn")
+      end
+
+    end
+
+    context "game is over" do
+
+      it "raises an error if the game is already won" do
+        allow(board).to receive(:isWinner?).and_return(true)
+        expect{game.claim(0,0)}.to raise_error("The game is already over")
+      end
+
+      it "raises an error if the game is already a draw" do
+        allow(board).to receive(:isDraw?).and_return(true)
+        expect{game.claim(0,0)}.to raise_error("The game is already over")
+      end
+
+    end
+
   end
 
-  describe "#isOver?" do
-
-    # it "knows when the game is not over" do
-    #   allow(board).to receive(:isWinner?).and_return(true)
-    #   expect(game.isOver?).to equal(false)
-    # end
-
-
-    # it "knows when the game is not over" do
-    #   allow(board).to receive(:isComplete?).and_return(false)
-    #   expect(game.isOver?).to equal(false)
-    # end
-    #
-    # it "knows when the game is over" do
-    #   allow(board).to receive(:isComplete?).and_return(true)
-    #   expect(game.isOver?).to equal(true)
-    # end
-
-  end
 
 
 end

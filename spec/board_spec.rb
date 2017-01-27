@@ -88,12 +88,12 @@ describe Board do
   describe "#isOver?" do
 
     it "return false if the game is still in play" do
-      expect(board.isOver?).to equal(false)
+      expect(board.isDraw?).to equal(false)
     end
 
     it "returns true if the game is a draw" do
       board = Board.new(grid: [ [:X,:X,:O], [:X,:O,:X],[:O,:O,:X] ])
-      expect(board.isOver?).to equal(true)
+      expect(board.isDraw?).to equal(true)
     end
 
 
